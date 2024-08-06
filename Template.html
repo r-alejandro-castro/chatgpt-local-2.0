@@ -112,23 +112,9 @@
                 }
             }
         }
-
-        small {
-            font-size: 10px;
-            /* color: #555;
-            position: fixed;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            margin: auto; */
-        }
     </style>
 
     <script type="module">
-
-        // I.A
-        import {CreateMLCEngine} from "https://esm.run/@mlc-ai/web-llm"
-
 
         const $ = el => document.querySelector(el)
 
@@ -140,26 +126,6 @@
         const $messages = $('ul')
         const $container = $('main')
         const $button = $('button')
-
-        //I.A
-        const $info = $('small')
-
-        const SELECTED_MODEL = 'gemma-2b-it-q4f32_1-MLC'
-
-        const engine = await CreateMLCEngine (
-            SELECTED_MODEL, 
-            {
-                initProgressCallBack: (info) => {
-                    console.log('initProgressCallBack', info)
-                    $info.textContent = `${info.text}%`
-                    if (info.progress === 1) {
-                        $button.removeAttribute('disabled')
-                    }
-                }
-            }
-        )
-
-        //--------------------------
 
         $form.addEventListener('submit', (event) => {
             event.preventDefault()
@@ -227,10 +193,8 @@
 
     <form>
         <input placeholder="Escribe tu mensaje">
-        <button disabled>Enviar</button>
+        <button>Enviar</button>
     </form>
-
-    <small>&nbsp;</small>
 
     <template id="message-template">
         <li class="message">
